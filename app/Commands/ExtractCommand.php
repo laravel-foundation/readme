@@ -36,11 +36,11 @@ class ExtractCommand extends Command
     protected $description = 'Extract Laravel Foundation';
 
     protected $extractors = [
-//        Auth::class, Bootstrap::class, Bus::class,
-//        Console::class, Events::class, Exceptions::class, Http::class,
-//        Providers::class, Support::class, Testing::class, Validation::class,
-//
-//        Core::class,
+        Auth::class, Bootstrap::class, Bus::class,
+        Console::class, Events::class, Exceptions::class, Http::class,
+        Providers::class, Support::class, Testing::class, Validation::class,
+
+        Core::class,
         Foundation::class,
     ];
     /**
