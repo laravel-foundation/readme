@@ -54,6 +54,7 @@ class ExtractCommand extends Command
 
         $this->downloadZip($version);
         $this->runExtractors($version);
+        $this->cleanup($version);
     }
 
     protected function downloadZip($version)
@@ -76,13 +77,19 @@ class ExtractCommand extends Command
             exec(sprintf('rm -rf %s', $destination));
         }
 
+        $zipLocation = storage_path(sprintf('archives/%s.zip', $version));
+
         $zip = new ZipArchive;
-        if ($zip->open(storage_path(sprintf('archives/%s.zip', $version))) === true) {
+        if ($zip->open($zipLocation) === true) {
             $zip->extractTo($destination);
             $zip->close();
             $this->info('Extracted Zip');
         } else {
             $this->error('Failed Extracting Zip');
+        }
+
+        if (file_exists($zipLocation)) {
+            exec(sprintf('rm %s', $zipLocation));
         }
     }
 
@@ -101,6 +108,27 @@ class ExtractCommand extends Command
 
             $this->line('');
             $this->line('');
+        }
+    }
+
+    public function cleanup($version)
+    {
+        $extractions = storage_path(sprintf('extractions/%s', $version));
+
+        if (is_dir($extractions)) {
+            exec(sprintf('rm -rf %s', $extractions));
+        }
+
+        $versions = storage_path(sprintf('versions/%s', $version));
+
+        if (is_dir($versions)) {
+            exec(sprintf('rm -rf %s', $versions));
+        }
+
+        $releases = storage_path(sprintf('release/%s', $version));
+
+        if (is_dir($releases)) {
+            exec(sprintf('rm -rf %s', $releases));
         }
     }
 }
