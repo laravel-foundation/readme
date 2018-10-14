@@ -172,6 +172,7 @@ abstract class Extractor
 
         $template = Storage::get('stubs/README.md');
         $template = str_replace("COMPONENT_NAME", $this->name(), $template);
+        $template = str_replace("PACKAGE_NAME", $this->package(), $template);
         $template = str_replace("NAMESPACE", str_replace('\\', '/', $this->namespace()), $template);
         $template = str_replace("LARAVEL_VERSION", $version, $template);
 

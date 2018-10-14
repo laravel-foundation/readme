@@ -95,7 +95,7 @@ class Foundation extends Extractor
 
         /** @var \App\Extractors\Extractor $component */
         foreach ($this->components as $component) {
-            Storage::append($destination, sprintf('* `%s` - The %s Component.', $component::package(), $component::name()));
+            Storage::append($destination, sprintf('* [`%s`](https://github.com/%s) - The %s Component.', $component::package(), $component::package(), $component::name()));
         }
 
         $this->command->info(sprintf('%s: README.md added', $this->name()));

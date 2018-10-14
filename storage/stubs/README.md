@@ -2,6 +2,12 @@
 
 This is an extraction of [https://github.com/laravel/framework/tree/vLARAVEL_VERSION/src/NAMESPACE](https://github.com/laravel/framework/tree/vLARAVEL_VERSION/src/NAMESPACE)
 
+### Installation
+
+```bash
+composer require PACKAGE_NAME
+```
+
 
 ### Issues
 
